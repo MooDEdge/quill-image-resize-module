@@ -1,6 +1,7 @@
 var path = require('path');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
-module.exports = {
+module.exports = [{
     entry: "./src/ImageResize.js",
     output: {
         path: path.resolve(__dirname, 'dist/umd'),
@@ -29,5 +30,26 @@ module.exports = {
                 }]
             }
         ]
-    }
-};
+    },
+    plugins: [
+        new CopyWebpackPlugin([
+            {
+                from: path.resolve(__dirname, 'src'),
+                to: path.resolve(__dirname, 'dist/esm'),
+                toType: 'dir',
+                transform(content, path) {
+                    return maybeTransform(content.toString());
+                }
+            }
+        ])
+    ]
+}];
+
+function maybeTransform(content) {
+
+    return content.toString().replace(
+        /import (.*) from 'quill\/assets\/(.*)';/g,
+        "import { $1 } from './client-side-assets.js';"
+    );
+
+}

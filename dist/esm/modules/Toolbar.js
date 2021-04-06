@@ -1,6 +1,6 @@
-import IconAlignLeft from 'quill/assets/icons/align-left.svg';
-import IconAlignCenter from 'quill/assets/icons/align-center.svg';
-import IconAlignRight from 'quill/assets/icons/align-right.svg';
+import { IconAlignLeft } from './client-side-assets.js';
+import { IconAlignCenter } from './client-side-assets.js';
+import { IconAlignRight } from './client-side-assets.js';
 import { BaseModule } from './BaseModule.js';
 
 let Align, initialized = false;
