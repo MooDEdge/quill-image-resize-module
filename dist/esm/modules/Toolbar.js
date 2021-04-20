@@ -44,6 +44,7 @@ export class Toolbar extends BaseModule {
 		this.alignments = [
 			{
 				icon: IconAlignLeft,
+				class: "ql-image-align-left",
 				apply: () => {
 					const line = Quill.find(this.img).parent;
 					Align.remove(line.domNode);
@@ -55,6 +56,7 @@ export class Toolbar extends BaseModule {
 			},
 			{
 				icon: IconAlignCenter,
+				class: "ql-image-align-center",
 				apply: () => {
 					const line = Quill.find(this.img).parent;
 					Align.add(line.domNode, 'center');
@@ -66,6 +68,7 @@ export class Toolbar extends BaseModule {
 			},
 			{
 				icon: IconAlignRight,
+				class: "ql-image-align-right",
 				apply: () => {
 					const line = Quill.find(this.img).parent;
 					Align.add(line.domNode, 'right');
@@ -82,6 +85,7 @@ export class Toolbar extends BaseModule {
 		const buttons = [];
 		this.alignments.forEach((alignment, idx) => {
 			const button = document.createElement('span');
+			button.classList.add(alignment.class);
 			buttons.push(button);
 			if(typeof(alignment.icon)==="function") {
 				alignment.icon(button).then(() => {
